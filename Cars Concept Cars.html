@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VV MOTORS | Concept Cars — The Future</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #c5a059;
+            --gold-light: #e2c47a;
+            --white: #ffffff;
+            --black: #050505;
+            --gray: #1a1a1a;
+            --glass: rgba(255, 255, 255, 0.06);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+      
+        header {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(14px);
+            background: rgba(5, 5, 5, 0.6);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 8%;
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 4px;
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .logo span { color: var(--gold); }
+
+        .nav-links { display: flex; list-style: none; gap: 30px; }
+
+        .nav-links a {
+            text-decoration: none;
+            color: rgba(255,255,255,0.75);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+        .dropdown { position: relative; }
+
+        .submenu {
+            position: absolute;
+            top: 110%;
+            left: 0;
+            background: #0f0f0f;
+            width: 200px;
+            padding: 12px;
+            display: none;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        .submenu li { list-style: none; margin: 8px 0; }
+        .dropdown:hover .submenu { display: block; }
+
+        .btn-outline {
+            border: 1px solid rgba(197,160,89,0.5);
+            padding: 9px 22px;
+            color: var(--gold);
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover { background: var(--gold); color: #000; }
+
+        /* ── HERO ── */
+        .hero {
+            height: 100vh;
+            background:
+                linear-gradient(to right, rgba(0,0,0,0.92) 45%, rgba(0,0,0,0.2)),
+                linear-gradient(to bottom, transparent 60%, var(--black));
+            background-color: #080808;
+            display: flex;
+            align-items: center;
+            padding-left: 8%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(197,160,89,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(197,160,89,0.04) 1px, transparent 1px);
+            background-size: 80px 80px;
+            animation: gridPan 20s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes gridPan {
+            from { background-position: 0 0; }
+            to   { background-position: 80px 80px; }
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 250px;
+            background: linear-gradient(transparent, var(--black));
+            z-index: 1;
+        }
+
+        .hero-content { max-width: 600px; position: relative; z-index: 2; }
+
+        .badge {
+            display: inline-block;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border: 1px solid rgba(197,160,89,0.3);
+            padding: 6px 14px;
+            border-radius: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(4rem, 8vw, 7rem);
+            line-height: 0.95;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-content p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.7;
+            max-width: 420px;
+        }
+
+        .hero-btns {
+            margin-top: 2.2rem;
+            display: flex;
+            gap: 14px;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: #000;
+            padding: 14px 34px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+        .btn-secondary {
+            border: 1px solid var(--border);
+            color: var(--white);
+            padding: 14px 34px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: border-color 0.3s, background 0.3s;
+        }
+
+        .btn-secondary:hover { border-color: var(--gold); background: rgba(197,160,89,0.08); }
+
+        
+        .hero-concept-tag {
+            position: absolute;
+            top: 50%;
+            right: 8%;
+            transform: translateY(-50%);
+            z-index: 2;
+            text-align: right;
+        }
+
+        .hero-concept-tag .big-year {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(5rem, 10vw, 10rem);
+            line-height: 1;
+            color: rgba(197,160,89,0.08);
+            letter-spacing: 6px;
+        }
+
+        .hero-concept-tag .tag-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            color: rgba(255,255,255,0.2);
+        }
+
+        
+        .marquee-bar {
+            background: var(--gold);
+            padding: 12px 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-track {
+            display: inline-block;
+            animation: marquee 22s linear infinite;
+        }
+
+        .marquee-track span {
+            color: #000;
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin: 0 40px;
+        }
+
+        .marquee-track span.dot { margin: 0; }
+
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+
+        
+        section { padding: 100px 8%; }
+
+        .section-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            letter-spacing: 2px;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .section-sub {
+            color: rgba(255,255,255,0.45);
+            font-size: 0.95rem;
+            max-width: 440px;
+            line-height: 1.7;
+        }
+
+        
+        .concepts-section { background: var(--black); }
+
+        .concepts-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 60px;
+        }
+
+        .view-all {
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(197,160,89,0.4);
+            padding-bottom: 2px;
+        }
+
+        
+        .concept-featured {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            transition: border-color 0.4s;
+            cursor: pointer;
+        }
+
+        .concept-featured:hover { border-color: rgba(197,160,89,0.35); }
+
+        .concept-featured:hover .concept-vis-inner { transform: scale(1.04); }
+
+        .concept-vis {
+            background: #0e0e0e;
+            overflow: hidden;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .concept-vis-inner {
+            width: 100%; height: 100%;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.6s;
+        }
+
+        .concept-vis .big-label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 6rem;
+            color: rgba(197,160,89,0.1);
+            letter-spacing: 8px;
+            position: absolute;
+        }
+
+        .concept-vis .year-pill {
+            position: absolute;
+            top: 20px; left: 20px;
+            background: rgba(197,160,89,0.15);
+            border: 1px solid rgba(197,160,89,0.3);
+            color: var(--gold);
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 2px;
+        }
+
+        .concept-info {
+            background: var(--gray);
+            padding: 50px 44px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .concept-badge {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .concept-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            letter-spacing: 3px;
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+
+        .concept-desc {
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.8;
+            margin-bottom: 28px;
+        }
+
+        .concept-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+
+        .concept-tag {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.5);
+            border: 1px solid var(--border);
+            padding: 5px 12px;
+            border-radius: 2px;
+        }
+
+        .concept-cta {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: gap 0.3s;
+        }
+
+        .concept-cta:hover { gap: 12px; }
+
+        
+        .concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 0;
+        }
+
+        .concept-card {
+            background: var(--gray);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.35s, border-color 0.35s;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(197,160,89,0.4);
+        }
+
+        .concept-card:hover .card-vis-inner { transform: scale(1.05); }
+
+        .card-vis {
+            height: 200px;
+            background: #0d0d0d;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card-vis-inner {
+            width: 100%; height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.5s;
+        }
+
+        .card-vis .placeholder {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            color: rgba(197,160,89,0.12);
+            letter-spacing: 5px;
+        }
+
+        .card-body { padding: 22px; }
+
+        .card-category {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--gold);
+            margin-bottom: 6px;
+        }
+
+        .card-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.7rem;
+            letter-spacing: 2px;
+        }
+
+        .card-desc {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.45);
+            margin: 8px 0 16px;
+            line-height: 1.6;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border);
+            padding-top: 14px;
+        }
+
+        .card-year {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.2);
+            letter-spacing: 1px;
+        }
+
+        .card-link {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.4);
+            text-decoration: none;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .card-link:hover { color: var(--gold); }
+
+      
+        .philosophy {
+            background: var(--gray);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 80px 8%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .philosophy-text h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            letter-spacing: 2px;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .philosophy-text p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.9;
+            margin-bottom: 14px;
+        }
+
+        .philosophy-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .phil-stat {
+            padding: 28px;
+            background: #111;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .phil-stat .num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            line-height: 1;
+        }
+
+        .phil-stat .label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: rgba(255,255,255,0.3);
+            margin-top: 6px;
+        }
+
+     
+        .timeline-section { background: var(--black); }
+
+        .timeline {
+            position: relative;
+            margin-top: 60px;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 0 0 50px 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -4px; top: 8px;
+            width: 9px; height: 9px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+
+        .timeline-year {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+            margin-bottom: 6px;
+        }
+
+        .timeline-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .timeline-desc {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.4);
+            line-height: 1.7;
+            max-width: 500px;
+        }
+
+       
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0 80px;
+        }
+
+        
+        .cta-banner {
+            margin: 0 8% 100px;
+            background: linear-gradient(135deg, #1a1408, #2a1f08);
+            border: 1px solid rgba(197,160,89,0.25);
+            border-radius: 12px;
+            padding: 70px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-banner::before {
+            content: 'VV';
+            position: absolute; right: 50px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 18rem;
+            color: rgba(197,160,89,0.04);
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .cta-text h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .cta-text p { color: rgba(255,255,255,0.5); font-size: 0.95rem; }
+        .cta-actions { display: flex; gap: 14px; flex-shrink: 0; }
+
+        footer {
+            background: #080808;
+            border-top: 1px solid var(--border);
+            padding: 60px 8% 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-brand .logo { margin-bottom: 14px; display: block; }
+
+        .footer-brand p {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.35);
+            line-height: 1.7;
+            max-width: 260px;
+        }
+
+        .footer-col h5 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin: 9px 0; }
+        .footer-col ul li a {
+            text-decoration: none;
+            color: rgba(255,255,255,0.4);
+            font-size: 0.83rem;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover { color: var(--white); }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom p { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+        .social-links { display: flex; gap: 14px; }
+
+        .social-links a {
+            width: 34px; height: 34px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; font-size: 0.75rem;
+            color: rgba(255,255,255,0.4);
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover { border-color: var(--gold); color: var(--gold); }
+
+        @media (max-width: 1024px) {
+            .concept-featured { grid-template-columns: 1fr; }
+            .concepts-grid { grid-template-columns: repeat(2, 1fr); }
+            .philosophy { grid-template-columns: 1fr; gap: 40px; }
+            .timeline-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 1rem 5%; }
+            .nav-links, .nav-cta { display: none; }
+            .hero { padding-left: 5%; }
+            section { padding: 70px 5%; }
+            .concepts-grid { grid-template-columns: 1fr; }
+            .cta-banner { flex-direction: column; gap: 30px; margin: 0 5% 70px; padding: 40px 30px; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a href="HOME.html" class="logo">VV <span>MOTORS</span></a>
+            <ul class="nav-links">
+                <li><a href="HOME.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="active">Models ▾</a>
+                    <ul class="submenu">
+                        <li><a href="cars electric fleet.html">Electric Fleet</a></li>
+                        <li><a href="Cars Performance GT.html">Performance GT</a></li>
+                        <li><a href="Cars Luxury SUV.html">Luxury SUVs</a></li>
+                        <li><a href="Cars Concept Cars.html" class="active">Concept Cars</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Inventory</a></li>
+                <li><a href="#">Ownership</a></li>
+                <li><a href="#">Design Lab</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="#" class="btn-outline">Test Drive</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge">Vision Series · 2026</span>
+            <h1>BEYOND<br>TOMORROW</h1>
+            <p>Where imagination outpaces physics. Our concept cars are not just vehicles — they are declarations of what driving can become.</p>
+            <div class="hero-btns">
+                <a href="#concepts" class="btn-primary">Explore Concepts</a>
+                <a href="#timeline" class="btn-secondary">Our Vision</a>
+            </div>
+        </div>
+        <div class="hero-concept-tag">
+            <div class="big-year">2040</div>
+            <div class="tag-label">VV Vision Horizon</div>
+        </div>
+    </section>
+
+    <div class="marquee-bar">
+        <div class="marquee-track">
+            <span>Hydrogen Propulsion</span><span class="dot">✦</span>
+            <span>Autonomous Grade 5</span><span class="dot">✦</span>
+            <span>Vision Series 2026</span><span class="dot">✦</span>
+            <span>Biomorphic Design</span><span class="dot">✦</span>
+            <span>Zero Emission Future</span><span class="dot">✦</span>
+            <span>Hydrogen Propulsion</span><span class="dot">✦</span>
+            <span>Autonomous Grade 5</span><span class="dot">✦</span>
+            <span>Vision Series 2026</span><span class="dot">✦</span>
+            <span>Biomorphic Design</span><span class="dot">✦</span>
+            <span>Zero Emission Future</span><span class="dot">✦</span>
+        </div>
+    </div>
+
+    <section class="concepts-section" id="concepts">
+        <div class="concepts-header">
+            <div>
+                <p class="section-label">Vision Series</p>
+                <h2 class="section-title">THE FUTURE,<br>DESIGNED NOW</h2>
+                <p class="section-sub">Each concept represents a decade of thinking compressed into a single, breathtaking form.</p>
+            </div>
+            <a href="#" class="view-all">Design Lab →</a>
+        </div>
+
+        <div class="concept-featured">
+            <div class="concept-vis">
+                <div class="concept-vis-inner" style="background: radial-gradient(ellipse at 60% 40%, #1a1208, #050505);">
+                    <div class="big-label">VELA</div>
+                </div>
+                <div class="year-pill">Concept · 2026</div>
+            </div>
+            <div class="concept-info">
+                <p class="concept-badge">Featured Concept · Hydrogen</p>
+                <h3 class="concept-name">VELA ZERO</h3>
+                <p class="concept-desc">
+                    The Vela Zero is VV Motors' boldest statement yet — a hydrogen fuel-cell hypercar with an active biomorphic body that adapts its aerodynamic profile in real-time. Drawing from aerospace engineering and biomimicry, its form shifts at speed, reducing drag by up to 40% beyond 200 km/h.
+                    <br><br>
+                    The cockpit is a single-pilot sanctuary of sustainability: interior panels grown from mycelium, screens replaced by holographic projections, and a haptic steering membrane that communicates road texture through vibration.
+                </p>
+                <div class="concept-tags">
+                    <span class="concept-tag">Hydrogen Fuel Cell</span>
+                    <span class="concept-tag">Active Aerodynamics</span>
+                    <span class="concept-tag">Biomorphic Body</span>
+                    <span class="concept-tag">1,200 hp</span>
+                    <span class="concept-tag">Sub 2.0s 0–100</span>
+                </div>
+                <a href="#" class="concept-cta">Explore Vela Zero →</a>
+            </div>
+        </div>
+
+        <div class="concepts-grid" style="margin-top: 20px;">
+
+            <div class="concept-card">
+                <div class="card-vis">
+                    <div class="card-vis-inner" style="background: linear-gradient(135deg, #0d1520, #050505);">
+                        <div class="placeholder">ARIA</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-category">Concept · Electric</p>
+                    <h3 class="card-name">ARIA PHANTOM</h3>
+                    <p class="card-desc">Solid-state battery. 900 km range. Ultra-thin solar roof. A grand tourer for the post-fossil era, with a silhouette inspired by Indian kite forms.</p>
+                    <div class="card-footer">
+                        <span class="card-year">2028</span>
+                        <a href="#" class="card-link">View Concept →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="concept-card">
+                <div class="card-vis">
+                    <div class="card-vis-inner" style="background: linear-gradient(135deg, #1a0d0d, #050505);">
+                        <div class="placeholder">KALA</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-category">Concept · Autonomous</p>
+                    <h3 class="card-name">KALA ONE</h3>
+                    <p class="card-desc">Grade-5 autonomous city pod. Rotating cabin that always faces the direction of travel. Designed for India's megacity corridors of 2035.</p>
+                    <div class="card-footer">
+                        <span class="card-year">2030</span>
+                        <a href="#" class="card-link">View Concept →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="concept-card">
+                <div class="card-vis">
+                    <div class="card-vis-inner" style="background: linear-gradient(135deg, #0d1a0d, #050505);">
+                        <div class="placeholder">TERRA</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-category">Concept · Off-Road EV</p>
+                    <h3 class="card-name">TERRA REX</h3>
+                    <p class="card-desc">All-terrain electric explorer. Six-wheel drive. Deployable solar awning. Built for adventure where infrastructure ends and wilderness begins.</p>
+                    <div class="card-footer">
+                        <span class="card-year">2029</span>
+                        <a href="#" class="card-link">View Concept →</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="philosophy">
+        <div class="philosophy-text">
+            <p class="section-label">Our Design Philosophy</p>
+            <h2>FORM IS THE<br>FUNCTION</h2>
+            <p>At VV Motors Design Lab, we believe that every curve, surface, and material choice is a moral decision. We don't design for spectacle — we design for consequence.</p>
+            <p>Our concept programme runs a 5-year horizon. Every concept you see today is built to become a production reality by the next decade. Nothing here is purely fantasy.</p>
+        </div>
+        <div class="philosophy-stats">
+            <div class="phil-stat">
+                <div class="num">12</div>
+                <div class="label">Concept Cars Built</div>
+            </div>
+            <div class="phil-stat">
+                <div class="num">4</div>
+                <div class="label">In Production Pipeline</div>
+            </div>
+            <div class="phil-stat">
+                <div class="num">240+</div>
+                <div class="label">Design Awards</div>
+            </div>
+            <div class="phil-stat">
+                <div class="num">2040</div>
+                <div class="label">Vision Horizon Year</div>
+            </div>
+        </div>
+    </div>
+
+    <section class="timeline-section" id="timeline">
+        <p class="section-label">The Road Ahead</p>
+        <h2 class="section-title">OUR CONCEPT<br>ROADMAP</h2>
+        <p class="section-sub">From sketch to showroom — a glimpse into VV Motors' concept-to-production pipeline.</p>
+
+        <div class="timeline-grid">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2026</div>
+                    <div class="timeline-title">VELA ZERO REVEAL</div>
+                    <p class="timeline-desc">World premiere at the India Motor Show, Delhi. Hydrogen fuel-cell hypercar concept unveiled to the public for the first time.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2027</div>
+                    <div class="timeline-title">ARIA PHANTOM DEBUT</div>
+                    <p class="timeline-desc">Global unveil at Geneva. Solid-state battery technology confirmed for series production by 2030.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2028</div>
+                    <div class="timeline-title">DESIGN LAB OPENS</div>
+                    <p class="timeline-desc">VV Motors' Bangalore Design Lab opens its doors for exclusive owner preview events and bespoke commission programmes.</p>
+                </div>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2029</div>
+                    <div class="timeline-title">TERRA REX PROTOTYPE</div>
+                    <p class="timeline-desc">All-terrain EV prototype completes a full India-to-Nepal traverse under its own power. Production feasibility confirmed.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2030</div>
+                    <div class="timeline-title">KALA ONE PILOT</div>
+                    <p class="timeline-desc">Grade-5 autonomous city pod enters pilot programme across Bangalore, Mumbai, and Chennai corridors in partnership with city planners.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2032+</div>
+                    <div class="timeline-title">PRODUCTION BEGINS</div>
+                    <p class="timeline-desc">First concept-derived production models roll off the line. The future becomes your driveway.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="cta-banner">
+        <div class="cta-text">
+            <h2>SHAPE THE FUTURE WITH US</h2>
+            <p>Join our Design Lab insider programme. Early access to reveals, bespoke commission slots, and priority allocation.</p>
+        </div>
+        <div class="cta-actions">
+            <a href="#" class="btn-primary">Join Design Lab</a>
+            <a href="#" class="btn-secondary">Contact Us</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="HOME.html" class="logo">VV <span>MOTORS</span></a>
+                <p>Premium automotive experiences crafted for those who demand the extraordinary. Built for India, engineered for the world.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Models</h5>
+                <ul>
+                    <li><a href="cars electric fleet.html">Electric Fleet</a></li>
+                    <li><a href="Cars Performance GT.html">Performance GT</a></li>
+                    <li><a href="Cars Luxury SUV.html">Luxury SUVs</a></li>
+                    <li><a href="Cars Concept Cars.html">Concept Cars</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Company</h5>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Design Lab</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Support</h5>
+                <ul>
+                    <li><a href="#">Book Test Drive</a></li>
+                    <li><a href="#">Service Centers</a></li>
+                    <li><a href="#">Ownership</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 VV Motors. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#">in</a>
+                <a href="#">tw</a>
+                <a href="#">ig</a>
+                <a href="#">yt</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
