@@ -4,818 +4,1025 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hemachandiran V T — Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-icons@5.15.0/icons/github.svg">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #0A0A0A;
-    --fg: #FAFAFA;
-    --muted: #1A1A1A;
-    --muted-fg: #737373;
-    --accent: #FF3D00;
-    --border: #262626;
-    --card: #0F0F0F;
-    --mono: "JetBrains Mono", monospace;
-    --sans: "Inter Tight", "Inter", system-ui, sans-serif;
+    --primary: #2563eb;
+    --primary-light: #eff6ff;
+    --primary-dark: #1d4ed8;
+    --text: #111827;
+    --text-muted: #6b7280;
+    --bg: #f9fafb;
+    --white: #ffffff;
+    --border: #e5e7eb;
+    --radius: 14px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06);
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
   }
 
   html { scroll-behavior: smooth; }
 
   body {
+    font-family: 'Inter', system-ui, sans-serif;
     background: var(--bg);
-    color: var(--fg);
-    font-family: var(--sans);
-    font-size: 16px;
+    color: var(--text);
+    font-size: 15px;
     line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.015'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.4;
+    min-height: 100vh;
   }
 
   /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 48px;
+  header {
+    background: var(--white);
     border-bottom: 1px solid var(--border);
-    background: rgba(10,10,10,0.92);
-    backdrop-filter: blur(8px);
+    position: sticky;
+    top: 0;
+    z-index: 50;
   }
 
-  .nav-logo {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
+  nav {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--primary);
+    text-decoration: none;
+    letter-spacing: -0.02em;
   }
 
   .nav-links {
     display: flex;
-    gap: 40px;
+    gap: 4px;
     list-style: none;
   }
 
   .nav-links a {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted-fg);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-muted);
     text-decoration: none;
-    transition: color 150ms;
+    padding: 6px 14px;
+    border-radius: 8px;
+    transition: background 150ms, color 150ms;
   }
-  .nav-links a:hover { color: var(--fg); }
 
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex;
+  .nav-links a:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+  }
+
+  .nav-cta {
+    background: var(--primary) !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+  }
+
+  .nav-cta:hover {
+    background: var(--primary-dark) !important;
+  }
+
+  .hamburger {
+    display: none;
     flex-direction: column;
-    justify-content: flex-end;
-    padding: 120px 48px 80px;
-    border-bottom: 1px solid var(--border);
-    position: relative;
-    overflow: hidden;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
   }
 
-  .hero-eyebrow {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 24px;
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: all 200ms;
   }
 
-  .hero-name {
-    font-size: clamp(3.5rem, 10vw, 9rem);
-    font-weight: 900;
-    letter-spacing: -0.05em;
-    line-height: 0.92;
-    margin-bottom: 40px;
-  }
-
-  .hero-name span { display: block; }
-  .hero-name .accent-line { color: var(--accent); }
-
-  .hero-bg-text {
-    position: absolute;
-    bottom: -20px;
-    right: -20px;
-    font-size: clamp(8rem, 20vw, 18rem);
-    font-weight: 900;
-    letter-spacing: -0.06em;
-    color: transparent;
-    -webkit-text-stroke: 1px var(--border);
-    line-height: 1;
-    pointer-events: none;
-    user-select: none;
-  }
-
-  .hero-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 40px;
-  }
-
-  .hero-tagline {
-    max-width: 400px;
-    font-size: 1.125rem;
-    line-height: 1.6;
-    color: var(--muted-fg);
-  }
-
-  .hero-contacts {
-    display: flex;
+  .mobile-menu {
+    display: none;
     flex-direction: column;
-    align-items: flex-end;
-    gap: 8px;
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    padding: 12px 24px 20px;
+    gap: 4px;
   }
 
-  .hero-contacts a {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    color: var(--muted-fg);
+  .mobile-menu.open { display: flex; }
+
+  .mobile-menu a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-muted);
     text-decoration: none;
-    transition: color 150ms;
-  }
-  .hero-contacts a:hover { color: var(--accent); }
-
-  .hero-scroll {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted-fg);
-    margin-top: 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .scroll-line {
-    width: 40px;
-    height: 1px;
-    background: var(--muted-fg);
-    display: inline-block;
-  }
-
-  /* SECTIONS */
-  section {
-    padding: 100px 48px;
+    padding: 10px 0;
     border-bottom: 1px solid var(--border);
   }
 
-  .section-label {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 60px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
+  .mobile-menu a:hover { color: var(--primary); }
 
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-    max-width: 80px;
-  }
-
-  /* ABOUT */
-  .about-grid {
+  /* LAYOUT */
+  .page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
+    grid-template-columns: 280px 1fr;
+    gap: 32px;
     align-items: start;
   }
 
-  .about-headline {
-    font-size: clamp(2rem, 4vw, 3.5rem);
+  /* SIDEBAR */
+  .sidebar {
+    position: sticky;
+    top: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .profile-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 28px 24px;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+
+  .avatar {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.2rem;
     font-weight: 700;
-    letter-spacing: -0.04em;
-    line-height: 1.1;
+    color: #fff;
+    margin: 0 auto 16px;
+    letter-spacing: -0.03em;
   }
 
-  .about-body {
-    color: var(--muted-fg);
-    font-size: 1.05rem;
-    line-height: 1.75;
-    margin-bottom: 32px;
-  }
-
-  .about-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    border: 1px solid var(--border);
-    margin-top: 40px;
-  }
-
-  .stat-box {
-    padding: 24px;
-    border: 1px solid var(--border);
-  }
-
-  .stat-num {
-    font-size: 2.5rem;
-    font-weight: 900;
-    letter-spacing: -0.05em;
-    color: var(--accent);
-    line-height: 1;
+  .profile-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.3;
     margin-bottom: 4px;
   }
 
-  .stat-label {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
+  .profile-title {
+    font-size: 0.82rem;
+    color: var(--primary);
+    font-weight: 600;
+    letter-spacing: 0.02em;
     text-transform: uppercase;
-    color: var(--muted-fg);
+    margin-bottom: 12px;
+  }
+
+  .profile-location {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .profile-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 9px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 150ms;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--primary);
+    color: #fff;
+  }
+
+  .btn-primary:hover { background: var(--primary-dark); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--primary);
+    border: 1.5px solid var(--primary);
+  }
+
+  .btn-outline:hover {
+    background: var(--primary-light);
+  }
+
+  /* CONTACT CARD */
+  .contact-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px 20px;
+    border: 1px solid var(--border);
+  }
+
+  .card-section-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.82rem;
+    color: var(--text);
+  }
+
+  .contact-row:last-child { border-bottom: none; }
+
+  .contact-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: var(--primary-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .contact-row a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    word-break: break-all;
+  }
+
+  .contact-row a:hover { text-decoration: underline; }
+
+  /* SOCIAL */
+  .social-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px;
+    border: 1px solid var(--border);
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 12px;
+  }
+
+  .social-link {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    border: 1.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 18px;
+    transition: all 150ms;
+  }
+
+  .social-link:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: var(--primary-light);
+  }
+
+  /* MAIN CONTENT */
+  .main { display: flex; flex-direction: column; gap: 24px; }
+
+  .card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 28px 28px;
+    border: 1px solid var(--border);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    background: var(--primary-light);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  /* HERO / INTRO */
+  .hello-tag {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--primary);
+    background: var(--primary-light);
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+  }
+
+  .hero-heading {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+    margin-bottom: 14px;
+  }
+
+  .hero-heading span { color: var(--primary); }
+
+  .hero-body {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 22px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
   }
 
   /* SKILLS */
   .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1px;
-    border: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
-  .skill-item {
-    padding: 28px 24px;
-    border: 1px solid var(--border);
-    transition: background 150ms, border-color 150ms;
+  .skill-chip {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--primary);
+    background: var(--primary-light);
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid #bfdbfe;
+    transition: all 150ms;
     cursor: default;
   }
 
-  .skill-item:hover {
-    background: var(--muted);
-    border-color: var(--accent);
+  .skill-chip:hover {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
   }
 
-  .skill-category {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 12px;
+  .skill-chip.gray {
+    color: #374151;
+    background: #f3f4f6;
+    border-color: var(--border);
   }
 
-  .skill-name {
-    font-size: 1.1rem;
-    font-weight: 600;
-    letter-spacing: -0.02em;
+  .skill-chip.gray:hover {
+    background: #374151;
+    color: #fff;
+    border-color: #374151;
   }
 
   /* EXPERIENCE */
-  .exp-list { display: flex; flex-direction: column; }
-
   .exp-item {
     display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 40px;
-    padding: 48px 0;
+    grid-template-columns: 44px 1fr;
+    gap: 16px;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
     border-bottom: 1px solid var(--border);
+    position: relative;
   }
 
-  .exp-item:first-child { border-top: 1px solid var(--border); }
+  .exp-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
 
-  .exp-meta { display: flex; flex-direction: column; gap: 6px; }
+  .exp-dot-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4px;
+  }
+
+  .exp-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--primary);
+    border: 3px solid var(--primary-light);
+    flex-shrink: 0;
+  }
+
+  .exp-line {
+    width: 2px;
+    flex: 1;
+    background: var(--border);
+    margin-top: 6px;
+  }
+
+  .exp-item:last-child .exp-line { display: none; }
 
   .exp-date {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    color: var(--muted-fg);
-    text-transform: uppercase;
-  }
-
-  .exp-company {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: -0.01em;
-    color: var(--accent);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 3px;
   }
 
   .exp-role {
-    font-size: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.97rem;
     font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.2;
-    margin-bottom: 20px;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .exp-company {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 8px;
   }
 
   .exp-desc {
-    color: var(--muted-fg);
-    font-size: 0.95rem;
-    line-height: 1.7;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 10px;
   }
 
   .exp-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 20px;
+    gap: 6px;
   }
 
-  .tag {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 6px 12px;
+  .exp-tag {
+    font-size: 0.73rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: #f3f4f6;
+    color: #374151;
     border: 1px solid var(--border);
-    color: var(--muted-fg);
-    transition: border-color 150ms, color 150ms;
   }
-
-  .tag:hover { border-color: var(--fg); color: var(--fg); }
 
   /* EDUCATION */
-  .edu-list { display: flex; flex-direction: column; }
-
   .edu-item {
-    display: grid;
-    grid-template-columns: 200px 1fr auto;
-    gap: 40px;
-    align-items: baseline;
-    padding: 32px 0;
+    display: flex;
+    gap: 16px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
     border-bottom: 1px solid var(--border);
   }
 
-  .edu-item:first-child { border-top: 1px solid var(--border); }
-
-  .edu-year {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    color: var(--muted-fg);
-    text-transform: uppercase;
+  .edu-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
   }
 
-  .edu-name {
-    font-size: 1.1rem;
-    font-weight: 600;
-    letter-spacing: -0.02em;
+  .edu-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: var(--primary-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: var(--primary);
+    flex-shrink: 0;
+  }
+
+  .edu-degree {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 2px;
   }
 
   .edu-school {
-    font-size: 0.85rem;
-    color: var(--muted-fg);
-    margin-top: 4px;
+    font-size: 0.83rem;
+    color: var(--text-muted);
+    margin-bottom: 4px;
   }
 
-  .edu-badge {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 5px 10px;
-    background: var(--accent);
-    color: var(--bg);
+  .edu-year {
+    font-size: 0.73rem;
     font-weight: 600;
-    white-space: nowrap;
-    align-self: center;
+    color: var(--primary);
+    background: var(--primary-light);
+    padding: 2px 10px;
+    border-radius: 20px;
+    display: inline-block;
   }
 
   /* CERTS */
-  .cert-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1px;
-    border: 1px solid var(--border);
-  }
+  .cert-list { display: flex; flex-direction: column; gap: 12px; }
 
   .cert-item {
-    padding: 36px 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 14px;
+    border-radius: 10px;
     border: 1px solid var(--border);
+    background: var(--bg);
     transition: background 150ms;
-    position: relative;
   }
 
-  .cert-item::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 32px;
-    width: 40px; height: 2px;
-    background: var(--accent);
-  }
+  .cert-item:hover { background: var(--primary-light); border-color: #bfdbfe; }
 
-  .cert-item:hover { background: var(--muted); }
+  .cert-badge {
+    width: 38px;
+    height: 38px;
+    border-radius: 9px;
+    background: var(--white);
+    border: 1.5px solid #bfdbfe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
 
   .cert-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 8px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 1px;
   }
 
   .cert-issuer {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent);
+    font-size: 0.77rem;
+    color: var(--text-muted);
   }
 
-  /* CONTACT */
-  .contact-section {
-    padding: 120px 48px;
-    background: var(--fg);
-    color: var(--bg);
+  /* SOFT SKILLS */
+  .soft-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
   }
 
-  .contact-headline {
-    font-size: clamp(2.5rem, 7vw, 7rem);
-    font-weight: 900;
-    letter-spacing: -0.05em;
-    line-height: 0.9;
-    margin-bottom: 60px;
-  }
-
-  .contact-grid {
+  .soft-item {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    flex-wrap: wrap;
-    gap: 40px;
-    border-top: 1px solid rgba(10,10,10,0.2);
-    padding-top: 40px;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text);
   }
 
-  .contact-links { display: flex; flex-direction: column; gap: 12px; }
+  .soft-item span {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: var(--primary-light);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
 
-  .contact-link {
-    font-size: 1.05rem;
+  /* STATUS BADGE */
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    display: inline-block;
+    margin-right: 5px;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .available-badge {
+    font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: -0.01em;
-    color: var(--bg);
-    text-decoration: none;
+    color: #166534;
+    background: #dcfce7;
+    border: 1px solid #bbf7d0;
+    padding: 4px 10px;
+    border-radius: 20px;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    position: relative;
-    width: fit-content;
-  }
-
-  .contact-link::after {
-    content: '';
-    position: absolute;
-    bottom: -2px; left: 0; right: 0;
-    height: 2px;
-    background: var(--accent);
-    transform: scaleX(1);
-    transition: transform 150ms;
-  }
-
-  .contact-link:hover::after { transform: scaleX(1.05); }
-
-  .contact-location {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(10,10,10,0.5);
+    margin-bottom: 16px;
   }
 
   /* FOOTER */
   footer {
-    padding: 32px 48px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    text-align: center;
+    padding: 24px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    background: var(--white);
   }
 
-  .footer-copy {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    color: var(--muted-fg);
-    text-transform: uppercase;
+  /* SVG ICONS inline */
+  .icon-svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
   }
 
-  /* ANIMATIONS */
-  .fade-up {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-  }
-
-  .fade-up.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* MOBILE */
-  @media (max-width: 768px) {
-    nav { padding: 16px 24px; }
-    .nav-links { gap: 20px; }
-    section, .hero, .contact-section { padding-left: 24px; padding-right: 24px; }
-    footer { padding-left: 24px; padding-right: 24px; }
-    .hero { padding-top: 100px; padding-bottom: 60px; }
-    .hero-bg-text { display: none; }
-    .hero-bottom { flex-direction: column; align-items: flex-start; }
-    .hero-contacts { align-items: flex-start; }
-    .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    .exp-item { grid-template-columns: 1fr; gap: 16px; }
-    .edu-item { grid-template-columns: 1fr; gap: 8px; }
-    .edu-badge { width: fit-content; }
+  /* RESPONSIVE */
+  @media (max-width: 700px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .page {
+      grid-template-columns: 1fr;
+      padding: 20px 16px 60px;
+      gap: 20px;
+    }
+    .sidebar { position: static; }
+    .soft-grid { grid-template-columns: 1fr; }
+    .hero-heading { font-size: 1.5rem; }
+    .card { padding: 20px 18px; }
   }
 </style>
 </head>
 <body>
 
-<nav>
-  <span class="nav-logo">HVT</span>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<section class="hero" id="hero">
-  <p class="hero-eyebrow">Full-Stack Developer — Chennai, IN</p>
-  <h1 class="hero-name">
-    <span>HEMA</span>
-    <span>CHANDIRAN</span>
-    <span class="accent-line">V T</span>
-  </h1>
-  <div class="hero-bg-text">DEV</div>
-  <div class="hero-bottom">
-    <p class="hero-tagline">
-      Java-based enterprise solutions and dynamic front-end design.
-      Translating complex requirements into clean, functional code.
-    </p>
-    <div class="hero-contacts">
-      <a href="mailto:hemachandiranvt33@gmail.com">hemachandiranvt33@gmail.com</a>
-      <a href="tel:9597960204">+91 9597960204</a>
-      <a href="https://linkedin.com/in/hemachandiran-v-t-a94b14329" target="_blank">LinkedIn ↗</a>
-      <a href="https://github.com/Hema-commit" target="_blank">GitHub ↗</a>
-      <div class="hero-scroll">
-        <span class="scroll-line"></span>Scroll to explore
-      </div>
-    </div>
+<header>
+  <nav>
+    <a href="#" class="nav-brand">Hemachandiran VT</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="https://github.com/Hema-commit" target="_blank" class="nav-cta">GitHub ↗</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" onclick="toggleMenu()">About</a>
+    <a href="#skills" onclick="toggleMenu()">Skills</a>
+    <a href="#experience" onclick="toggleMenu()">Experience</a>
+    <a href="#education" onclick="toggleMenu()">Education</a>
+    <a href="https://github.com/Hema-commit" target="_blank">GitHub ↗</a>
   </div>
-</section>
+</header>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-label">About</div>
-  <div class="about-grid">
-    <div class="fade-up">
-      <h2 class="about-headline">Building the web, one commit at a time.</h2>
-      <div class="about-stats">
-        <div class="stat-box">
-          <div class="stat-num">3+</div>
-          <div class="stat-label">Technologies</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-num">3</div>
-          <div class="stat-label">Internships</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-num">B.Tech</div>
-          <div class="stat-label">In Progress</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-num">IT</div>
-          <div class="stat-label">Specialization</div>
-        </div>
+<div class="page">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="profile-card">
+      <div class="avatar">HV</div>
+      <div class="available-badge">
+        <span class="status-dot"></span>Open to Internships
+      </div>
+      <div class="profile-name">Hemachandiran V T</div>
+      <div class="profile-title">Full-Stack Developer</div>
+      <div class="profile-location">
+        📍 Chennai, Tamil Nadu, India
+      </div>
+      <div class="profile-btns">
+        <a href="https://github.com/Hema-commit" target="_blank" class="btn btn-primary">
+          View Projects ↗
+        </a>
+        <a href="mailto:hemachandiranvt33@gmail.com" class="btn btn-outline">
+          Hire Me
+        </a>
       </div>
     </div>
-    <div class="fade-up">
-      <p class="about-body">
-        Aspiring Full-Stack Developer currently pursuing B.Tech in Information Technology at Jeppiaar Engineering College. I specialize in Java-based enterprise solutions paired with dynamic front-end experiences built with React and Node.js.
+
+    <div class="contact-card">
+      <div class="card-section-title">Contact</div>
+      <div class="contact-row">
+        <div class="contact-icon">📧</div>
+        <div><a href="mailto:hemachandiranvt33@gmail.com">hemachandiranvt33@gmail.com</a></div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">📞</div>
+        <div><a href="tel:+919597960204">+91 9597960204</a></div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">💼</div>
+        <div><a href="https://linkedin.com/in/hemachandiran-v-t-a94b14329" target="_blank">LinkedIn Profile</a></div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">🐱</div>
+        <div><a href="https://github.com/Hema-commit" target="_blank">Hema-commit</a></div>
+      </div>
+    </div>
+
+    <div class="social-card">
+      <div class="card-section-title">Follow Me</div>
+      <div class="social-links">
+        <a href="https://linkedin.com/in/hemachandiran-v-t-a94b14329" target="_blank" class="social-link" title="LinkedIn">
+          <svg class="icon-svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        </a>
+        <a href="https://github.com/Hema-commit" target="_blank" class="social-link" title="GitHub">
+          <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        </a>
+        <a href="mailto:hemachandiranvt33@gmail.com" class="social-link" title="Email">
+          <svg class="icon-svg" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/></svg>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- HELLO -->
+    <div class="card" id="about">
+      <div class="hello-tag">👋 Hello There</div>
+      <h1 class="hero-heading">
+        I'm <span>Hemachandiran V T</span>,<br>
+        an Aspiring Full-Stack Developer
+      </h1>
+      <p class="hero-body">
+        Pre-Final Year B.Tech IT Student at Jeppiaar Engineering College, Chennai. I'm passionate about building end-to-end web applications — from Java back-end logic to clean, responsive front-ends with React. I've worked across three tech organisations, shipping real commercial websites and collaborating in agile teams.
       </p>
-      <p class="about-body">
-        I've worked across multiple tech organizations — Just-Rise Technologies, Rendercity Technologies, and Novi-Tech — where I applied design and development skills to real commercial projects, collaborated in agile teams, and shipped working products. I'm seeking an internship to push my skills into production-grade environments.
+      <p class="hero-body" style="margin-bottom: 22px;">
+        Currently seeking an internship where I can contribute to production-grade projects and level up my skills in a professional engineering environment.
       </p>
-      <p style="font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.1em; color: var(--accent); text-transform: uppercase;">
-        English (Level 3) · Tamil · Multilingual
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-label">Technical Skills</div>
-  <div class="skills-grid fade-up">
-    <div class="skill-item">
-      <div class="skill-category">Language</div>
-      <div class="skill-name">Java</div>
-    </div>
-    <div class="skill-item">
-      <div class="skill-category">Language</div>
-      <div class="skill-name">SQL</div>
-    </div>
-    <div class="skill-item">
-      <div class="skill-category">Frontend</div>
-      <div class="skill-name">React.js</div>
-    </div>
-    <div class="skill-item">
-      <div class="skill-category">Backend</div>
-      <div class="skill-name">Node.js</div>
-    </div>
-    <div class="skill-item">
-      <div class="skill-category">Frontend</div>
-      <div class="skill-name">HTML &amp; CSS</div>
-    </div>
-    <div class="skill-item">
-      <div class="skill-category">Database</div>
-      <div class="skill-name">MySQL</div>
-    </div>
-    <div class="skill-item">
-      <div class="skill-category">Database</div>
-      <div class="skill-name">MongoDB</div>
-    </div>
-    <div class="skill-item">
-      <div class="skill-category">Framework</div>
-      <div class="skill-name">Bootstrap</div>
-    </div>
-    <div class="skill-item">
-      <div class="skill-category">Tool</div>
-      <div class="skill-name">GitHub</div>
-    </div>
-    <div class="skill-item">
-      <div class="skill-category">Tool</div>
-      <div class="skill-name">VS Code</div>
-    </div>
-    <div class="skill-item">
-      <div class="skill-category">Platform</div>
-      <div class="skill-name">WordPress</div>
-    </div>
-    <div class="skill-item">
-      <div class="skill-category">Platform</div>
-      <div class="skill-name">Wix</div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="section-label">Experience</div>
-  <div class="exp-list">
-    <div class="exp-item fade-up">
-      <div class="exp-meta">
-        <span class="exp-date">Jan 2026</span>
-        <span class="exp-company">Novi-Tech</span>
+      <div class="hero-actions">
+        <a href="https://github.com/Hema-commit" target="_blank" class="btn btn-primary">View My Projects ↗</a>
+        <a href="mailto:hemachandiranvt33@gmail.com" class="btn btn-outline">Contact Me</a>
       </div>
-      <div>
-        <h3 class="exp-role">Full-Stack Student Developer</h3>
-        <p class="exp-desc">Contributed to planning, execution, and delivery of web development work. Developed and launched commercial websites independently. Collaborated with a team of 4, improving both delivery efficiency and overall product quality.</p>
-        <div class="exp-tags">
-          <span class="tag">Web Development</span>
-          <span class="tag">Commercial Sites</span>
-          <span class="tag">Team Collaboration</span>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="card" id="skills">
+      <div class="section-header">
+        <div class="section-icon">⚡</div>
+        <div class="section-title">Technical Skills</div>
+      </div>
+      <p style="font-size:0.78rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-muted); margin-bottom:10px;">Languages & Frameworks</p>
+      <div class="skills-grid" style="margin-bottom:18px;">
+        <span class="skill-chip">Java</span>
+        <span class="skill-chip">SQL</span>
+        <span class="skill-chip">JavaScript</span>
+        <span class="skill-chip">HTML5</span>
+        <span class="skill-chip">CSS3</span>
+        <span class="skill-chip">React.js</span>
+        <span class="skill-chip">Node.js</span>
+        <span class="skill-chip">Bootstrap</span>
+      </div>
+      <p style="font-size:0.78rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-muted); margin-bottom:10px;">Databases & Tools</p>
+      <div class="skills-grid">
+        <span class="skill-chip gray">MySQL</span>
+        <span class="skill-chip gray">MongoDB</span>
+        <span class="skill-chip gray">GitHub</span>
+        <span class="skill-chip gray">VS Code</span>
+        <span class="skill-chip gray">WordPress</span>
+        <span class="skill-chip gray">Wix</span>
+      </div>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div class="card" id="experience">
+      <div class="section-header">
+        <div class="section-icon">💼</div>
+        <div class="section-title">Experience</div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-dot-col">
+          <div class="exp-dot"></div>
+          <div class="exp-line"></div>
+        </div>
+        <div>
+          <div class="exp-date">Jan 2026 — Present</div>
+          <div class="exp-role">Full-Stack Student Developer</div>
+          <div class="exp-company">Novi-Tech</div>
+          <p class="exp-desc">Contributed to planning, execution, and delivery of web development projects. Developed and launched commercial websites independently. Collaborated with a team of 4, improving efficiency and product quality.</p>
+          <div class="exp-tags">
+            <span class="exp-tag">Web Development</span>
+            <span class="exp-tag">Commercial Sites</span>
+            <span class="exp-tag">Team Collaboration</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-dot-col">
+          <div class="exp-dot"></div>
+          <div class="exp-line"></div>
+        </div>
+        <div>
+          <div class="exp-date">Aug 2025</div>
+          <div class="exp-role">Student Developer</div>
+          <div class="exp-company">Just-Rise Technologies</div>
+          <p class="exp-desc">Applied front-end and back-end skills to assigned projects. Designed and developed production-level websites. Completed Full-Stack certification through hands-on applied learning.</p>
+          <div class="exp-tags">
+            <span class="exp-tag">Full Stack</span>
+            <span class="exp-tag">HTML / CSS</span>
+            <span class="exp-tag">JavaScript</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-dot-col">
+          <div class="exp-dot"></div>
+        </div>
+        <div>
+          <div class="exp-date">Aug 2025</div>
+          <div class="exp-role">Student Developer</div>
+          <div class="exp-company">Rendercity Technologies</div>
+          <p class="exp-desc">Worked alongside mentors on real-world software modules. Assisted in building interfaces and contributed to team growth and engagement metrics on delivered projects.</p>
+          <div class="exp-tags">
+            <span class="exp-tag">React.js</span>
+            <span class="exp-tag">Node.js</span>
+            <span class="exp-tag">UI Design</span>
+          </div>
         </div>
       </div>
     </div>
-    <div class="exp-item fade-up">
-      <div class="exp-meta">
-        <span class="exp-date">Aug 2025</span>
-        <span class="exp-company">Just-Rise Technologies</span>
+
+    <!-- EDUCATION -->
+    <div class="card" id="education">
+      <div class="section-header">
+        <div class="section-icon">🎓</div>
+        <div class="section-title">Education</div>
       </div>
-      <div>
-        <h3 class="exp-role">Student Developer</h3>
-        <p class="exp-desc">Applied front-end and back-end skills to assigned projects. Worked on designing and developing production-level websites. Completed Full-Stack certification through hands-on applied learning.</p>
-        <div class="exp-tags">
-          <span class="tag">Full Stack</span>
-          <span class="tag">Design</span>
-          <span class="tag">HTML/CSS</span>
-          <span class="tag">JavaScript</span>
+
+      <div class="edu-item">
+        <div class="edu-icon">🏛️</div>
+        <div>
+          <div class="edu-degree">B.Tech — Information Technology</div>
+          <div class="edu-school">Jeppiaar Engineering College, Chennai</div>
+          <span class="edu-year">2024 – 2028 · In Progress</span>
+        </div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-icon">📚</div>
+        <div>
+          <div class="edu-degree">12th Standard (HSC)</div>
+          <div class="edu-school">Sri Ayyan Vidyashram Hr Sec School</div>
+          <span class="edu-year">2023 – 2024 · Completed</span>
+        </div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-icon">📖</div>
+        <div>
+          <div class="edu-degree">10th Standard (SSLC)</div>
+          <div class="edu-school">Sri Ayyan Vidyashram Hr Sec School</div>
+          <span class="edu-year">2021 – 2022 · Completed</span>
         </div>
       </div>
     </div>
-    <div class="exp-item fade-up">
-      <div class="exp-meta">
-        <span class="exp-date">Aug 2025</span>
-        <span class="exp-company">Rendercity Technologies</span>
+
+    <!-- CERTIFICATIONS -->
+    <div class="card">
+      <div class="section-header">
+        <div class="section-icon">🏆</div>
+        <div class="section-title">Certifications</div>
       </div>
-      <div>
-        <h3 class="exp-role">Student Developer</h3>
-        <p class="exp-desc">Worked alongside mentors on real-world software modules. Assisted in building interfaces and contributed to team growth, reach, and engagement metrics on delivered projects.</p>
-        <div class="exp-tags">
-          <span class="tag">React.js</span>
-          <span class="tag">Node.js</span>
-          <span class="tag">UI Design</span>
+      <div class="cert-list">
+        <div class="cert-item">
+          <div class="cert-badge">🎖️</div>
+          <div>
+            <div class="cert-title">Full-Stack Web Development</div>
+            <div class="cert-issuer">Professional Certification</div>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-badge">✅</div>
+          <div>
+            <div class="cert-title">Full Stack — Applied Program</div>
+            <div class="cert-issuer">Just-Rise Technology</div>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-badge">✅</div>
+          <div>
+            <div class="cert-title">Full Stack — Applied Program</div>
+            <div class="cert-issuer">Novi-Tech</div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- EDUCATION -->
-<section id="education">
-  <div class="section-label">Education</div>
-  <div class="edu-list fade-up">
-    <div class="edu-item">
-      <span class="edu-year">2024 – 2028</span>
-      <div>
-        <div class="edu-name">B.Tech — Information Technology</div>
-        <div class="edu-school">Jeppiaar Engineering College</div>
+    <!-- SOFT SKILLS -->
+    <div class="card">
+      <div class="section-header">
+        <div class="section-icon">🤝</div>
+        <div class="section-title">Soft Skills</div>
       </div>
-      <span class="edu-badge">In Progress</span>
-    </div>
-    <div class="edu-item">
-      <span class="edu-year">2023 – 2024</span>
-      <div>
-        <div class="edu-name">12th Standard</div>
-        <div class="edu-school">Sri Ayyan Vidyashram Hr Sec School</div>
+      <div class="soft-grid">
+        <div class="soft-item"><span>💬</span> Communication</div>
+        <div class="soft-item"><span>🧩</span> Problem Solving</div>
+        <div class="soft-item"><span>⏱️</span> Time Management</div>
+        <div class="soft-item"><span>🔄</span> Adaptability</div>
+        <div class="soft-item"><span>👥</span> Teamwork</div>
+        <div class="soft-item"><span>🌐</span> Multilingual</div>
       </div>
-      <span class="edu-badge" style="background: var(--border); color: var(--muted-fg);">Completed</span>
     </div>
-    <div class="edu-item">
-      <span class="edu-year">2021 – 2022</span>
-      <div>
-        <div class="edu-name">10th Standard</div>
-        <div class="edu-school">Sri Ayyan Vidyashram Hr Sec School</div>
-      </div>
-      <span class="edu-badge" style="background: var(--border); color: var(--muted-fg);">Completed</span>
-    </div>
-  </div>
-</section>
 
-<!-- CERTIFICATIONS -->
-<section>
-  <div class="section-label">Certifications</div>
-  <div class="cert-list fade-up">
-    <div class="cert-item">
-      <div class="cert-title">Full-Stack Web Development</div>
-      <div class="cert-issuer">Professional Certification</div>
-    </div>
-    <div class="cert-item">
-      <div class="cert-title">Full Stack — Applied</div>
-      <div class="cert-issuer">Just-Rise Technology</div>
-    </div>
-    <div class="cert-item">
-      <div class="cert-title">Full Stack — Applied</div>
-      <div class="cert-issuer">Novi-Tech</div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<div class="contact-section" id="contact">
-  <h2 class="contact-headline fade-up">LET'S<br>WORK.</h2>
-  <div class="contact-grid">
-    <div class="contact-links">
-      <a class="contact-link" href="mailto:hemachandiranvt33@gmail.com">hemachandiranvt33@gmail.com ↗</a>
-      <a class="contact-link" href="tel:9597960204">+91 9597960204</a>
-      <a class="contact-link" href="https://linkedin.com/in/hemachandiran-v-t-a94b14329" target="_blank">LinkedIn Profile ↗</a>
-      <a class="contact-link" href="https://github.com/Hema-commit" target="_blank">GitHub — Hema-commit ↗</a>
-    </div>
-    <div>
-      <p class="contact-location">Chennai, Tamil Nadu, India</p>
-      <p style="font-size: 0.9rem; color: rgba(10,10,10,0.6); margin-top: 8px; max-width: 240px; line-height: 1.6;">
-        Open to internship opportunities. Available for remote or Chennai-based roles.
-      </p>
-    </div>
-  </div>
+  </main>
 </div>
 
-<!-- FOOTER -->
 <footer>
-  <span class="footer-copy">© 2026 Hemachandiran V T</span>
-  <span class="footer-copy">Chennai · IN</span>
+  <p>© 2026 Hemachandiran V T &nbsp;·&nbsp; Student @ Jeppiaar Engineering College, Chennai</p>
 </footer>
 
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), 80);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '-30px' });
+  function toggleMenu() {
+    const m = document.getElementById('mobileMenu');
+    m.classList.toggle('open');
+  }
 
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.remove('open');
+    });
+  });
 </script>
 </body>
 </html>
